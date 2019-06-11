@@ -67,6 +67,7 @@ class TimeSeriesCV(object):
         np.random.seed(42)
         for _ in range(self.n_cv):
             train_test_is = np.random.choice(indices_to_train, size = self.n_indices_per_CV * 2, replace = False)
+            train_test_is = np.sort(train_test_is) # test indices are after train indices
             train_is = train_test_is[:self.n_indices_per_CV]
             test_is = train_test_is[self.n_indices_per_CV:]
             yield train_is, test_is
